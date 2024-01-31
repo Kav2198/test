@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Current Date and Time</title>
+</head>
+<body>
+
+<div id="datetime-container"></div>
+
+<script>
+async function getCurrentDateTime() {
+  try 
+  {
+    // Make a request to the WorldTimeAPI
+    const response = await fetch('http://worldtimeapi.org/api/ip');
+    const data = await response.json();
+
+    // Extract the date and time from the response
+    const datetime = data.datetime;
+
+    // Display the date and time
+    const datetimeContainer = document.getElementById('datetime-container');
+    datetimeContainer.innerHTML = `<p>Current Date and Time: ${datetime}</p>`;
+
+  } 
+  catch (error) 
+  {
+    console.log('Error fetching data>>>>>>:', error);
+  }
+  finally
+  {
+    console.log("");
+  }
+  console.log("hjggh");
+}
+
+
+// Call the function when the page loads
+document.addEventListener('DOMContentLoaded', getCurrentDateTime);
+</script>
+
+</body>
+</html>
